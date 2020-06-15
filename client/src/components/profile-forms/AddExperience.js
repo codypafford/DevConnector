@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addExperience } from "../../actions/profile";
@@ -23,7 +23,7 @@ const AddExperience = ({ addExperience, history }) => {
   // if current is true then clear the 'to' field
   useEffect(() => {
     setFormData({ ...formData, to: "" });
-  }, [current]);
+  }, [current, setFormData]);
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -132,4 +132,4 @@ AddExperience.propTypes = {
   addExperience: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addExperience })(AddExperience);
+export default connect(null, { addExperience })(withRouter(AddExperience));

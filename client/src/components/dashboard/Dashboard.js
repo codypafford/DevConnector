@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
-import Spinner from "../layout/spinner";
+import Spinner from "../layout/Spinner";
 import DashboardActions from "./DashboardActions";
 import Experience from "./Experience";
 import Education from "./Education";
@@ -12,7 +12,7 @@ const Dashboard = ({ getCurrentProfile, auth, profile, deleteAccount }) => {
   // The function passed to useEffect will run after the render is committed to the screen. Like a combo of DidMount, WillMount, and ... another one
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
   return profile.loading && profile === null ? (
     <Spinner />
   ) : (
