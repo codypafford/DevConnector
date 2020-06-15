@@ -9,7 +9,7 @@ const { check, validationResult } = require("express-validator"); // used so we 
 const User = require("../../models/User"); // user model
 
 // @route  GET api/auth
-// @desc   Test route
+// @desc   Get the User
 // @access Public - token must be given in header
 // CHECKS THAT TOKEN WAS VALID AND PULLS THE ID FROM IT, THEN GET THE USER USING THE ID. req.user was set in auth.js middleware
 router.get("/", auth, async (req, res) => {

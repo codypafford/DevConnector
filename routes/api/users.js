@@ -79,7 +79,7 @@ router.post(
         (err, token) => {
           // now i have an encrypted token which was signed using my secret token and contains the payload
           if (err) throw err;
-          res.json({ token });
+          res.json({ token: token });
         }
       );
       // we can send the token in headers and access protected routes!!

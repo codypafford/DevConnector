@@ -8,6 +8,7 @@ const { check, validationResult } = require("express-validator"); // used so we 
 
 const Profiles = require("../../models/Profile");
 const User = require("../../models/User");
+const Post = require("../../models/Posts");
 
 // @route  GET api/profile/me
 // @desc   Get Current users profile
@@ -23,7 +24,7 @@ router.get("/me", auth, async (req, res) => {
       await profile.populate("user", ["name", "avatar"]);
     }
 
-    res.json({ profile });
+    res.json(profile);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server Error");
@@ -77,7 +78,10 @@ router.post(
 
     if (skills) {
       // turn comma seperated skills into array with .split
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
+      profileFields.skills = skills
+        .toString()
+        .split(",")
+        .map((skill) => skill.trim());
     }
 
     // Build social object
@@ -159,6 +163,9 @@ router.get("/user/:user_id", async (req, res) => {
 
 router.delete("/", auth, async (req, res) => {
   try {
+    // Remove User Posts
+    await Post.deleteMany({ user: req.user.id });
+
     // Remove profile
     await Profiles.findOneAndRemove({ user: req.user.id });
 
@@ -213,6 +220,8 @@ router.put(
       current: current,
       description: description,
     };
+
+    console.log(newExp);
 
     try {
       const profile = await Profile.findOne({ user: req.user.id });
@@ -382,7 +391,7 @@ router.put(
     try {
       const profile = await Profile.findOne({ user: req.user.id });
 
-      // Get remove index
+      // Get index
       const editIndex = profile.education
         .map((item) => item.id)
         .indexOf(req.params.edu_id);
