@@ -11,8 +11,6 @@ const ProfileItem = ({
     user: { _id, name, avatar },
   },
 }) => {
-  console.log(_id);
-
   return (
     <Fragment>
       <div className="profile bg-light">

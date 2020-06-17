@@ -64,15 +64,15 @@ export const getProfileById = (userId) => async (dispatch) => {
 };
 
 // Get GitHub Repos
-const getGithubRepos = (username) => async (dispatch) => {
-  dispatch({ type: CLEAR_PROFILE });
+export const getGithubRepos = (username) => async (dispatch) => {
+  // dispatch({ type: CLEAR_PROFILE });
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
 
     dispatch({ type: GET_REPOS, payload: res.data });
   } catch (err) {
     dispatch({
-      type: PROFILE_ERROR,
+      type: "GITHUB_ERROR",
       payload: {
         msg: err.response.statusText,
         status: err.response.status,

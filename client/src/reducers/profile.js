@@ -32,6 +32,7 @@ export default function (state = intitialState, action) {
         ...state,
         error: payload,
         loading: false,
+        profile: null,
       };
 
     case CLEAR_PROFILE:
@@ -51,6 +52,12 @@ export default function (state = intitialState, action) {
       return {
         ...state,
         repos: payload,
+        loading: false,
+      };
+    case "GITHUB_ERROR":
+      return {
+        ...state,
+        repos: null,
         loading: false,
       };
     default:
