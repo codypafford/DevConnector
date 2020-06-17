@@ -1,6 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://mastercool:0087@devconnector-pjbn2.mongodb.net/DevConnector?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken",
-  "githubClientId": "6ad1ddf426078ea1bd66",
-  "githubSecret": "d2796cadecd052fcc0a8e753cc265325b8a145e2"
-}
