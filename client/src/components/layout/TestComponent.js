@@ -3,7 +3,7 @@ import React from "react";
 const TestComponent = () => {
   return (
     <div>
-      this is new
+      this is test
      
     </div>
   );
